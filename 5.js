@@ -3,33 +3,35 @@ console.log("Завдання: 5 ==============================");
 // Створюємо функцію task5, яка буде використовувати проміси.
 function task5() {
   let counter = 0;
-  function letCount(){
-    console.log(counter);
-    counter++;
+  // function letCount(){
+  //   console.log(counter);
+  //   counter++;
     
-  }
+  // }
   
        // Створюємо змінну counter яка буде лічильником та присвоюємо значення 0
   const intervalPromise = new Promise((resolve, reject) => {
-    setInterval((letCount), 1000);
+    let intervalId = setInterval(() =>{
+      counter++;
+      console.log(`Значення лічильника: ${counter}`);
+    if(counter >= 5) {
+      clearInterval(intervalId); 
+        resolve(counter);
+      }
     
-    console.log(`Значення лічильника: ${counter}`);
-    if((letCount) === 5) {
-      clearInterval(() => {
-        resolve(`Значення лічильника: ${counter}`);
-      })
-    }
-    
-  })      // Створюємо проміс з іменем intervalPromise.
-  .then((values) => {
-    console.log(values);
+    }, 1000);
+     
+  })
+  intervalPromise      // Створюємо проміс з іменем intervalPromise.
+  .then((value) => {
+    console.log(value);
   })     // Використовуємо функцію setInterval, щоб імітувати асинхронну операцію яка повторюється кожну секунду
         // збільшуючи лічильник на 1
         // Виводимо в консоль `Значення лічильника: ${counter}`
-        // Коли лічильник досягає 5, використовуємо clearInterval та викликаємо resolve, який повертає значення лічильника.
+         // Коли лічильник досягає 5, використовуємо clearInterval та викликаємо resolve, який повертає значення лічильника.
         // Використовуємо .then метод для отримання значення, яке було передане у функцію resolve() в нашому промісі, та виводимо його в консоль.
 .catch((error) => {
-  console.log('Error', error);
+  console.log(error);
 })        // Використовуємо .catch метод для обробки випадків, коли проміс переходить в стан "rejected". Та виводимо в консоль помилку.
         // Обробляємо помилку, якщо вона виникне
 .finally(() => {

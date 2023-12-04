@@ -2,17 +2,21 @@ console.log("Завдання: 4 ==============================");
 
 // Функція task4, яка буде використовувати проміси
 function task4() {
-const promise1 = new Promise((resolve, reject) =>{
+function promise1(){
+      return new Promise((resolve, reject) =>{
       setTimeout(() => {
             resolve(`'Проміс 1 виконано'`);
       })
-}, 1000);      // Визначаємо перший проміс з іменем promise1
+}, 1000);
+}     // Визначаємо перший проміс з іменем promise1
       // Функція promise1, повертає новий проміс
-const promise2 = new Promise((resolve, reject) =>{
+function promise2(){
+      return new Promise((resolve, reject) =>{
       setTimeout(() =>{
             resolve(`'Проміс 2 виконано'`);
       }, 1000);
-})     // Ми викликаємо конструктор Promise, що приймає в якості аргументу функцію (executor function)
+})
+}    // Ми викликаємо конструктор Promise, що приймає в якості аргументу функцію (executor function)
       // Ця функція приймає два аргументи: resolve і reject, які є функціями
       // Використовуємо функцію setTimeout, щоб симулювати асинхронну операцію
       // Ця функція приймає два аргументи: функцію, яку потрібно викликати після певного часу, і час у мілісекундах (1000 мс = 1 с)
@@ -21,9 +25,9 @@ const promise2 = new Promise((resolve, reject) =>{
       // Функція promise2, повертає новий проміс
       // Використовуємо функцію setTimeout, щоб симулювати асинхронну операцію з затримкою 1сек
       // Після 1 секунди викликаємо функцію resolve, яка змінює стан проміса на "виконано" і передає значення 'Проміс 2 виконано'
-Promise.all([promise1, promise2])      // Promise.all приймає масив промісів і повертає новий проміс, який вирішується, коли всі вхідні проміси вирішені
-.then((values) =>{
-      console.log(values);
+Promise.all([promise1(), promise2()])      // Promise.all приймає масив промісів і повертає новий проміс, який вирішується, коли всі вхідні проміси вирішені
+.then((results) =>{
+      console.log(results);
 })      // Функція then викликається, коли проміс вирішений
 .catch(() =>{
       console.log('error', error);

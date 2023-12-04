@@ -3,25 +3,28 @@ console.log("Завдання: 3 ==============================");
 // Створюємо функцію task3, в якій буде виконуватися завдання
 function task3() {
  
-  const promise1 = new Promise((resolve, reject)=>{
+  function promise1(){
+    return  new Promise((resolve)=>{
     setTimeout(() => {
       resolve(`'Проміс 1 виконано'`);
     }, 1000);
-  }) // Створюємо функцію promise1, яка створює і повертає новий проміс
+  })} // Створюємо функцію promise1, яка створює і повертає новий проміс
     // Метод new Promise приймає в якості параметра функцію (executor), яка має два параметри: resolve і reject.
     // Використовуємо setTimeout для імітації асинхронної операції, яка завершується через 1 секунду
     // Викликаємо resolve з рядком 'Проміс 1 виконано', що означає успішне вирішення проміса
-  const promise2 = new Promise((resolve, reject) =>{
+  function promise2(){
+    return new Promise((resolve, reject) =>{
     setTimeout(() => {
       reject(`'Проміс 2 відхилено'`);
   }, 2000);
-  })
+  });
+}
       // Створюємо функцію promise2, яка створює і повертає новий проміс, який відхиляється
-  const promises = [promise1, promise2]  // Використовуємо setTimeout для імітації асинхронної операції, яка не вдається і відхиляє проміс через 2 секунди
+  // const promises = [promise1, promise2]  // Використовуємо setTimeout для імітації асинхронної операції, яка не вдається і відхиляє проміс через 2 секунди
     // Викликаємо reject з рядком 'Проміс 2 відхилено', що означає відхилення проміса
-  Promise.allSettled(promises)  // Використовуємо Promise.allSettled який приймає масив промісів і повертає новий проміс, який вирішується, коли всі проміси вирішено або відхилено
-  .then((results) => results.forEach((result) =>
-   console.log(result.status))
+  Promise.allSettled([promise1(), promise2()])  // Використовуємо Promise.allSettled який приймає масив промісів і повертає новий проміс, який вирішується, коли всі проміси вирішено або відхилено
+  .then((results) => results.forEach((result, index) =>
+   console.log(`Promise ${index + 1}: ${result.status}`))
 
   )  // Він повертає масив об'єктів, кожний з яких відображає стан кожного проміса
     // Функція then викликається, коли проміс вирішено

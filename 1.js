@@ -11,8 +11,12 @@ function task1() {
   function getData(data, timeout = 2000) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(`${data}`);
-        reject(Error, ("Об'єкт пустий"));
+        if (Object.keys(data).length){
+           resolve(data);
+      } else {
+        reject(new Error, ("Об'єкт пустий"));
+      }
+        
       }, timeout)
     })  // Функція повертає новий проміс
       // За допомогою setTimeout ми симулюємо затримку timeout, яка виникає при роботі з асинхронними джерелами даних
@@ -22,10 +26,10 @@ function task1() {
 
   // Ми викликаємо getData з об'єктом { name: "John", age: 30, city: "New York" } і часом очікування 2000
   
-  getData ({ name: "John", age: 30, city: "New York" })
+  let promise = getData ({ name: "John", age: 30, city: "New York" }, 2000)
   
-  .then((getData) => {
-    console.log(`Success access`);
+  .then((data) => {
+    console.log(data);
   })    // Ми обробляємо дані, повернуті промісом
   .catch((error) => {
     console.log('Error', error);

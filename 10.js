@@ -1,20 +1,17 @@
 console.log("Завдання: 10 ==============================");
 
 function task10() {
-  const promise1 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(`promise1`);
-    }, 500)
+  const promise1 = new Promise((resolve) => {
+    setTimeout(resolve, 500, 'Promise1');
+   
   })    // Створюємо проміс promise1, які вирішуються через 500мс, та повертають як успішне виконання рядок "Promise 1".
-  const promise2 = new Promise((resolve,reject) =>{
-    setTimeout(() => {
-      resolve('promise2');
-    },200)
+  const promise2 = new Promise((resolve) =>{
+    setTimeout(resolve, 200, 'Promise2');
+    
   })    // Створюємо проміс promise2, які вирішуються через 200мс, та повертають як успішне виконання рядок "Promise 2".
   const promise3 = new Promise((resolve, reject) => {
-    setTimeout(()=> {
-      resolve('promise3');
-    }, 300)
+    setTimeout(resolve, 300, 'promise3');
+    
   })    // Створюємо проміс promise3, які вирішуються через 300мс, та повертають як успішне виконання рядок "Promise 3".
   Promise.any([promise1, promise2, promise3])    // Promise.any() приймає масив промісів які ми створили вище і вирішується, як тільки перший із цих промісів вирішується.
   .then((value) => {

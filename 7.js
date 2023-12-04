@@ -3,21 +3,21 @@ console.log("Завдання: 7 ==============================");
 // Створюємо функцію task7, яка використовує setInterval та проміси.
 function task7() {
 const promise = new Promise((resolve, reject) =>{
-  setInterval(() => {
+  let intervalId = setInterval(() => {
     const date = new Date()
     const seconds = date.getSeconds()
     console.log(`Поточні секунди: ${seconds}`);
+    if (seconds % 10 === 0){
+      clearInterval(intervalId);
+      resolve(`"Поточні секунди кратні 10!"`);
+    }
+    if (seconds % 3 === 0){
+      reject("Поточні секунди кратні 3!");
+    }
   }, 1000)
-  // let num1 = seconds / 10;
-  // intervalId1(num1);
-  //   clearInterval((intervalId1) => {
-  //     resolve(`"Поточні секунди кратні 10!"`);
-  // })
-  // (seconds / 3)
-  //   clearInterval(() => {
-  //     resolve("Поточні секунди кратні 3!");
-  //   })
-  })      // Створюємо новий проміс.
+   
+  })
+promise       // Створюємо новий проміс.
 .then((value) => {
   console.log(`Проміс зарезолвився з значенням: ${value}`);
 })      // Використовуємо функцію setInterval, щоб виконати функцію кожну секунду.
